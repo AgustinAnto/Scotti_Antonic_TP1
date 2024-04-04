@@ -1,9 +1,10 @@
 const express = require('express');
 const cors = require('cors');
 const path = require('path'); // Import path module
+const { error } = require('console');
 
 const app = express();
-const port = 3000;
+const port = 3001;
 
 // Allow all cross-origin requests
 app.use(cors());
@@ -23,10 +24,12 @@ app.use(express.static(path.join(__dirname, 'public')));
  * Business
 ****************************************/
 
-app.get('/players', async (req, res) => {
-  try{
+app.get('/antonic', async (req, res) => {
+  try{ //sino hace esto va a catch//
     
-    }catch(e){
+    res.status(200).send({'msg': 'hola'})
+
+    }catch(e){ //si hay un error cae aca//
       res.status(500).send({'error': 'Internal server error'})
     }
 })
@@ -35,11 +38,17 @@ app.get('/boom', async (req, res) => {
   res.status(500).json({ message: "My bad" })
 })
 
-app.get('/players/salary', async (req, res) => {
-  res.status(403).send({
-    'error': 'Cannot access this information'
-  })
-})
+app.post('/api/post', async (req, res) => {
+
+  try{
+    res.status({ message: 'Este es un endpoint POST/PUT' });
+     }
+catch(e){ //si hay un error cae aca//
+  res.status(500).send({'error': 'Internal server error'})
+}
+}
+);
+
 
 app.listen(port, () => {
   console.log(`Server is running on http://localhost:${port}`);
