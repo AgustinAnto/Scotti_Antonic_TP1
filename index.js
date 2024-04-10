@@ -62,13 +62,13 @@ app.get('/boom', async (req, res) => {
 
 app.post('/players', async (req, res) => {
   try {
-    const {
-      name
-    } = req.body;
+    const 
+    { name } = req.body;
 
     if(name === undefined){ //si name es igual a cualquier otra cosa mal escrita aparece lo siguiente//
       res.status(400).send({"error": "Necesito que escribas name"});
-    } else{
+    } 
+    else{
 
       console.log("Nuevo jugador:", name);
       res.status(201).send({ message: 'Jugador creado' });
@@ -86,10 +86,12 @@ app.put('/players', async (req, res) => {
   
     if (name === undefined) {
       res.status(400).send({"error": "Necesito que escribas name"});
-    } else {
+    } 
+    else {
       console.log("Jugador actualizado:", name );
       res.status(200).send({ message: 'Jugador actualizado' });
     }
+
   } catch (e) {
     console.error("Error al actualizar jugador:", e);
     res.status(500).send({ error: 'Error interno del servidor' });
