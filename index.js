@@ -34,7 +34,7 @@ app.get('/antonic', async (req, res) => {
     }
 })
 
-app.get('/scotti', async (req, res) => {
+app.get('/river', async (req, res) => {
   try{ //sino hace esto va a catch//
 
     res.status(200).sendFile(path.join(__dirname, 'tutu.html'));
