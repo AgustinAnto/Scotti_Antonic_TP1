@@ -45,25 +45,39 @@ app.get('/scotti', async (req, res) => {
     }
 })
 
+app.get('/goles', async (req, res) => {
+  try{ //sino hace esto va a catch//
+
+    res.status(200).sendFile(path.join(__dirname, 'goles.html'));
+
+    }catch(e){ //si hay un error cae aca//
+      
+      res.status(500).send({'error': 'Internal server error'})
+    }
+})
+
 app.get('/boom', async (req, res) => {
   res.status(500).json({ message: "My bad" })
 })
 
-app.post('/player', async (req, res) => {
+app.post('/players', async (req, res) => {
+  try {
+    const {
+      name
+    } = req.body;
 
-  try{
-    console.log(req.body)
-    res.status(200).send({ 
-      message
-      name: 'Messi'
-      club: 'Barcelona'  })
-     }
-     catch(e){ //si hay un error cae aca//
-     res.status(500).send({'error': 'Internal server error'})
-     }
-}
-);
-
+    if(name === undefined){ //si name es igual a cualquier otra cosa mal escrita aparece lo siguiente//
+      res.status(400).send({"error": "Necesito que escribas name"});
+    }else{
+      console.log("Nuevo jugador:", name);
+      res.status(201).send({ message: '¡Jugador creado exitosamente!' });
+    }
+  } catch (e) {
+    
+    console.error("Error al crear jugador:", e);
+    res.status(500).send({ error: 'Error interno del servidor' });
+  }
+});
 
 app.listen(port, () => {
   console.log(`Server is running on http://localhost:${port}`);
