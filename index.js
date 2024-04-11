@@ -37,7 +37,7 @@ app.get('/antonic', async (req, res) => {
 app.get('/river', async (req, res) => {
   try{ //sino hace esto va a catch//
 
-    res.status(200).sendFile(path.join(__dirname, 'tutu.html'));
+    res.status(200).sendFile(path.join(__dirname, 'river.html'));
 
     }catch(e){ //si hay un error cae aca//
       
